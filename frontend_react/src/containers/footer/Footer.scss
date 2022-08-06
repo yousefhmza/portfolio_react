@@ -1,0 +1,72 @@
+@mixin contact-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin: 1rem;
+  text-decoration: none;
+  color: #000;
+  background-color: var(--white-color);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+
+  svg {
+    margin-right: 1rem;
+    width: 25px;
+    height: 25px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
+  }
+}
+
+.app__contact {
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+}
+
+.app__footer-head-text {
+  margin: 4rem 1rem;
+}
+
+.app__contact-cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.app__contact-email {
+  @include contact-box();
+}
+
+.app__contact-phone {
+  @include contact-box();
+}
+
+.app__contact-whatsapp {
+  @include contact-box();
+}
+
+.app__contact-linkedin {
+  @include contact-box();
+}
+
+.app__contact-github {
+  @include contact-box();
+}
+
+.app__contact-facebook {
+  @include contact-box();
+}
