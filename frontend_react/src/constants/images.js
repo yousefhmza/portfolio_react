@@ -5,6 +5,7 @@ import cpp from "../assets/cpp.png";
 import css from "../assets/css.png";
 import figma from "../assets/figma.png";
 import flutter from "../assets/flutter.png";
+import swiftui from "../assets/swiftui.png";
 import git from "../assets/git.png";
 import graphql from "../assets/graphql.png";
 import html from "../assets/html.png";
@@ -17,7 +18,7 @@ import redux from "../assets/redux.png";
 import sass from "../assets/sass.png";
 import typescript from "../assets/typescript.png";
 import vue from "../assets/vue.png";
-
+import java from "../assets/java.png";
 import about01 from "../assets/about01.png";
 import about02 from "../assets/about02.png";
 import about03 from "../assets/about03.png";
@@ -43,6 +44,7 @@ const images = {
   css,
   figma,
   flutter,
+  swiftui,
   git,
   graphql,
   html,
@@ -55,6 +57,7 @@ const images = {
   sass,
   typescript,
   vue,
+  java,
   about01,
   about02,
   about03,

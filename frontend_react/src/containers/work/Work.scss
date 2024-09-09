@@ -50,7 +50,10 @@
 
 .app__work-item {
   width: 270px;
+  height: 430px;
+  display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   margin: 2rem;
   padding: 1rem;
   background-color: var(--white-color);
@@ -94,6 +97,10 @@
 .app__work-hover {
   position: absolute;
   margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -129,6 +136,12 @@
   p {
     text-align: center;
     margin: 0.5rem 0;
+    max-lines: 6;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    display: -webkit-box;
   }
 
   .app__work-tag {

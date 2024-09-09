@@ -26,6 +26,7 @@
 
   @media screen and (max-width: 1200px) {
     flex-direction: column;
+    align-items: center;
   }
 
   @media screen and (max-width: 450px) {
@@ -45,6 +46,11 @@
 
   @media screen and (max-width: 2000px) {
     width: 100%;
+  }
+
+  @media screen and (max-width: 1200px) {
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -67,10 +73,15 @@
     flex-direction: column;
     margin-top: 3rem;
 
+    .bold {
+      font-weight: 700;
+      font-size: large;
+    }
+
     p {
       width: 100%;
       text-transform: uppercase;
-      text-align: right;
+      text-align: center;
       margin: 0.25rem 0;
       font-weight: 500;
     }
@@ -116,13 +127,13 @@
     height: 150px;
   }
   div:nth-child(2) {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     align-self: center;
   }
   div:nth-child(3) {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     align-self: flex-end;
   }
   div:nth-child(4) {
@@ -136,13 +147,13 @@
       height: 300px;
     }
     div:nth-child(2) {
-      width: 160px;
-      height: 160px;
+      width: 240px;
+      height: 240px;
       align-self: center;
     }
     div:nth-child(3) {
-      width: 120px;
-      height: 120px;
+      width: 160px;
+      height: 160px;
       align-self: flex-end;
     }
     div:nth-child(4) {

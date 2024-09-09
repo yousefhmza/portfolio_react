@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { AiFillGithub, AiFillEye } from "react-icons/ai";
+import { FaGooglePlay, FaAppStore, FaGithub } from "react-icons/fa";
+import { MdLanguage } from "react-icons/md";
 import { motion } from "framer-motion";
 import { AppWrap, MotionWrap } from "../../wrapper";
-import { urlFor, client } from "../../client";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { firestore } from "../../firebase";
 
 import "./Work.scss";
 
@@ -12,13 +14,7 @@ const Work = () => {
   const [works, setWorks] = useState([]);
   const [filteredWorks, setFilteredWorks] = useState([]);
 
-  const categories = [
-    "Flutter",
-    "React Native",
-    "Web Development",
-    "UI/UX",
-    "All",
-  ];
+  const categories = ["Flutter", "React Native", "Web Development", "UI/UX", "All"];
 
   const workFilterHandler = (category) => {
     setActiveCategory(category);
@@ -35,11 +31,15 @@ const Work = () => {
   };
 
   useEffect(() => {
-    const query = '*[_type == "works"]';
-    client.fetch(query).then((data) => {
+    const projectsCollection = collection(firestore, "Projects");
+    const getProjects = async () => {
+      const snapshot = await getDocs(query(projectsCollection, orderBy("order", "asc")));
+      const data = snapshot.docs.map((document) => document.data());
       setWorks(data);
       setFilteredWorks(data);
-    });
+    };
+
+    getProjects();
   }, []);
 
   return (
@@ -51,9 +51,7 @@ const Work = () => {
         {categories.map((category, index) => (
           <div
             key={category + index}
-            className={`app__work-filter-item app__flex p-text ${
-              activeCategory === category ? "category-active" : ""
-            }`}
+            className={`app__work-filter-item app__flex p-text ${activeCategory === category ? "category-active" : ""}`}
             onClick={() => workFilterHandler(category)}
           >
             {category}
@@ -66,12 +64,13 @@ const Work = () => {
         transition={{ duration: 0.5, delayChildren: 0.5 }}
       >
         {filteredWorks.map((work, index) => (
-          <div key={work + index} className="app__work-item app__flex">
+          <div key={work + index} className="app__work-item">
             <div className="app__work-img app__flex">
-              <img src={urlFor(work.imgUrl)} alt={work.name} />
+              <img src={work.image} alt={work.name} />
               <motion.div
-                className="app__work-hover app__flex"
-                whileHover={{ opacity: [0, 1] }}
+                className="app__work-hover"
+                // whileHover={{ opacity: [0, 1] }}
+                // whileTap={{ opacity: [0, 1] }}
                 transition={{
                   duration: 0.5,
                   delayChildren: 0.25,
@@ -79,27 +78,51 @@ const Work = () => {
                   staggerChildren: 0.5,
                 }}
               >
-                {work.projectLink && (
-                  <a href={work.projectLink} target="_blank" rel="noreferrer">
+                {work.googlePlayUrl.length !== 0 && (
+                  <a href={work.googlePlayUrl} target="_blank" rel="noreferrer">
                     <motion.div
                       className="app__flex"
                       whileInView={{ scale: 1 }}
                       whileHover={{ scale: [1, 0.9] }}
                       transition={{ duration: 0.25 }}
                     >
-                      <AiFillEye />
+                      <FaGooglePlay />
                     </motion.div>
                   </a>
                 )}
-                {work.codeLink && (
-                  <a href={work.codeLink} target="_blank" rel="noreferrer">
+                {work.appStoreUrl.length !== 0 && (
+                  <a href={work.appStoreUrl} target="_blank" rel="noreferrer">
                     <motion.div
                       className="app__flex"
                       whileInView={{ scale: 1 }}
                       whileHover={{ scale: [1, 0.9] }}
                       transition={{ duration: 0.25 }}
                     >
-                      <AiFillGithub />
+                      <FaAppStore />
+                    </motion.div>
+                  </a>
+                )}
+                {work.websiteUrl.length !== 0 && (
+                  <a href={work.websiteUrl} target="_blank" rel="noreferrer">
+                    <motion.div
+                      className="app__flex"
+                      whileInView={{ scale: 1 }}
+                      whileHover={{ scale: [1, 0.9] }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <MdLanguage />
+                    </motion.div>
+                  </a>
+                )}
+                {work.githubUrl.length !== 0 && (
+                  <a href={work.githubUrl} target="_blank" rel="noreferrer">
+                    <motion.div
+                      className="app__flex"
+                      whileInView={{ scale: 1 }}
+                      whileHover={{ scale: [1, 0.9] }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <FaGithub />
                     </motion.div>
                   </a>
                 )}

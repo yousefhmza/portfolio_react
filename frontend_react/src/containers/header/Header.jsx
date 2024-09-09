@@ -19,8 +19,8 @@ const Header = () => {
 
   const circlesImages = [
     images.flutter,
+    images.swiftui,
     images.react,
-    images.html,
     images.javascript,
   ];
 
@@ -40,14 +40,13 @@ const Header = () => {
             </div>
           </div>
           <div className="tag-cmp app__flex">
-            <p>Mobile app developer</p>
-            <p>UI/UX designer</p>
-            <p>Junior web developer</p>
+            <p className="bold">Mobile Software Engineer</p>
+            <p>Flutter - IOS (UIKIT & SwiftUI) - React JS - React native</p>
           </div>
         </div>
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         className="app__header-img"
         whileInView={{ opacity: [0, 1] }}
         transition={{ duration: 0.5, delayChildren: 0.5 }}
@@ -60,7 +59,7 @@ const Header = () => {
           src={images.circle}
           alt="profile_circle"
         />
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
         className="app__header-circles"
